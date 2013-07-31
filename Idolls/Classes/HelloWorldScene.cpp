@@ -66,6 +66,7 @@ bool HelloWorld::init()
     
     return true;
 }
+
 void HelloWorld::editBoxEditingDidBegin(cocos2d::extension::CCEditBox* editBox){
     
     CCLog("Hi");

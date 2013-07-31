@@ -25,7 +25,7 @@ public:
 
     virtual void login();
     virtual void join();
-
+    
     cocos2d::extension::CCEditBox* m_pEditId;
     cocos2d::extension::CCEditBox* m_pEditPassword;
 

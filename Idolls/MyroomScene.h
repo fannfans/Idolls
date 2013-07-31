@@ -40,6 +40,15 @@ public:
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     
+    virtual void schedule();
+    virtual void closet();
+    virtual void diary();
+    virtual void stars();
+    virtual void coins();
+    
+    cocos2d::CCSprite* maincharacter;
+    
+    
     CCScrollView *scrollView ;
     
     
