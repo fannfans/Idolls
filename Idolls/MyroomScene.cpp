@@ -64,7 +64,7 @@ bool MyroomScene::init()
     scrollView->setDirection(kCCScrollViewDirectionHorizontal);
     scrollView->setViewSize(CCSizeMake(320,480));
     scrollView->setContentSize(bglayer->getContentSize());
-    scrollView->setContentOffset(CCPointZero, false);
+    scrollView->setContentOffset(CCPointZero, true);
     scrollView->setPosition(ccp(0,0));
     scrollView->setContainer(bglayer);
     scrollView->setDelegate(this);
@@ -164,6 +164,7 @@ void MyroomScene::onExit(){
     CCLayer::onExit();
 }
 
+
 void MyroomScene::scrollViewDidScroll(cocos2d::extension::CCScrollView *view){
     
 }
@@ -216,16 +217,18 @@ void MyroomScene::popup(){
     CCMenuItemImage *pMenuSchedule = CCMenuItemImage::create("schedule_button.png", "schedule_button.png", this, menu_selector(MyroomScene::schedule));
     CCMenuItemImage *pMenuCloset = CCMenuItemImage::create("closet_button.png","closet_button.png",this, menu_selector(MyroomScene::closet));
     CCMenuItemImage *pMenuDiary = CCMenuItemImage::create("diary_button.png", "diary_button.png", this, menu_selector(MyroomScene::diary));
+    CCMenuItemImage *pMenuMarket = CCMenuItemImage::create("market_button.png","market_button.png", this, menu_selector(MyroomScene::market));
     CCMenuItemImage *pMenuPopoff = CCMenuItemImage::create("menu_button_on.png","menu_button_on.png",this, menu_selector(MyroomScene::popoff));
     
     
     pMenuSchedule->setScale(winSize.width/3200*2.8);
     pMenuCloset->setScale(winSize.width/3200*2.8);
     pMenuDiary->setScale(winSize.width/3200*2.8);
+    pMenuMarket->setScale(winSize.width/3200*2.8);
     pMenuPopoff->setScale(winSize.width/3200*1.8);
     
     pMenuPopoff->setPosition(ccp(winSize.width/10*9,winSize.height/10*0.4));
-    CCMenu* pMenu = CCMenu::create(pMenuSchedule,pMenuCloset,pMenuDiary,pMenuPopoff,NULL);
+    CCMenu* pMenu = CCMenu::create(pMenuSchedule,pMenuCloset,pMenuDiary,pMenuMarket,pMenuPopoff,NULL);
     
     pMenu->alignItemsHorizontally();
     
@@ -257,6 +260,9 @@ void MyroomScene::closet(){
     
 }
 void MyroomScene::diary(){
+    
+}
+void MyroomScene::market(){
     
 }
 void MyroomScene::stars(){

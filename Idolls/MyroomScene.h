@@ -44,6 +44,7 @@ public:
     virtual void schedule();
     virtual void closet();
     virtual void diary();
+    virtual void market();
     virtual void stars();
     virtual void coins();
     virtual void popoff();
