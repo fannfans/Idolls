@@ -134,7 +134,7 @@ bool MyroomScene::init()
     popoffButton->setScale(winSize.width/3200*1.8);
     CCMenu* popoffMenu = CCMenu::create(popoffButton,NULL);
     popoffMenu->alignItemsHorizontally();
-    popoffMenu->setPosition(ccp(winSize.width/10*9,winSize.height/10*0.4));
+    popoffMenu->setPosition(ccp(winSize.width/10*9.15,winSize.height/10*0.7));
     popoffMenuLayer->addChild(popoffMenu);
     bglayer->getParent()->getParent()->addChild(popoffMenuLayer);
     
@@ -249,7 +249,7 @@ void MyroomScene::popoff(){
     popoffMenuLayer->setPosition(ccp(0,winSize.height/10*-0.1));
     
     //Move Up from Under
-    CCActionInterval* move = CCMoveTo::create(2, ccp(0,winSize.height/10*0.3));
+    CCActionInterval* move = CCMoveTo::create(2, ccp(0,winSize.height/10*0.1));
     CCActionInterval* move_ease_out = CCEaseElasticOut::create((CCActionInterval*)(move->copy()->autorelease()));
     popoffMenuLayer->runAction(move_ease_out);
 }
