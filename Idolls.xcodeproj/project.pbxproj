@@ -221,6 +221,7 @@
 		A81C03D416F6CB8C00DBC745 /* HttpClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81C03D316F6CB8C00DBC745 /* HttpClient.cpp */; };
 		A81C03DD16F6CB8C00DBC745 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81C03DC16F6CB8C00DBC745 /* AppDelegate.cpp */; };
 		A81C03E016F6CB8C00DBC745 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81C03DF16F6CB8C00DBC745 /* HelloWorldScene.cpp */; };
+		A8A2BFEF17B93658008A6B0E /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8A2BFED17B93658008A6B0E /* global.cpp */; };
 		A8A9047C179FF57B0023EE71 /* MyroomScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8A9047A179FF57B0023EE71 /* MyroomScene.cpp */; };
 		A8A9047F179FF58A0023EE71 /* JoinScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8A9047D179FF58A0023EE71 /* JoinScene.cpp */; };
 /* End PBXBuildFile section */
@@ -674,6 +675,8 @@
 		A81C03DC16F6CB8C00DBC745 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		A81C03DE16F6CB8C00DBC745 /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		A81C03DF16F6CB8C00DBC745 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
+		A8A2BFED17B93658008A6B0E /* global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = global.cpp; sourceTree = "<group>"; };
+		A8A2BFEE17B93658008A6B0E /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
 		A8A9047A179FF57B0023EE71 /* MyroomScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyroomScene.cpp; sourceTree = "<group>"; };
 		A8A9047B179FF57B0023EE71 /* MyroomScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyroomScene.h; sourceTree = "<group>"; };
 		A8A9047D179FF58A0023EE71 /* JoinScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JoinScene.cpp; sourceTree = "<group>"; };
@@ -1595,6 +1598,8 @@
 				A8A9047A179FF57B0023EE71 /* MyroomScene.cpp */,
 				A8A9047E179FF58A0023EE71 /* JoinScene.h */,
 				A8A9047D179FF58A0023EE71 /* JoinScene.cpp */,
+				A8A2BFED17B93658008A6B0E /* global.cpp */,
+				A8A2BFEE17B93658008A6B0E /* global.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1866,6 +1871,7 @@
 				A81C03E016F6CB8C00DBC745 /* HelloWorldScene.cpp in Sources */,
 				A8A9047C179FF57B0023EE71 /* MyroomScene.cpp in Sources */,
 				A8A9047F179FF58A0023EE71 /* JoinScene.cpp in Sources */,
+				A8A2BFEF17B93658008A6B0E /* global.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

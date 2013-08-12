@@ -49,7 +49,7 @@ public:
     virtual void coins();
     virtual void popoff();
     
-    cocos2d::CCSprite* maincharacter;
+
     
     
     CCScrollView *scrollView ;

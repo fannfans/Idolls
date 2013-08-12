@@ -7,17 +7,17 @@
 //
 
 #include "MyroomScene.h"
+#include "global.h"
 
 using namespace cocos2d;
 
 
 #define IMG_WIDTH 441
 
-CCSize winSize;
+
 
 CCLayerColor *bglayer;
-CCLayerColor *popoffMenuLayer;
-CCLayerColor *popupMenuLayer;
+
 
 CCScene* MyroomScene::scene()
 {
@@ -44,7 +44,6 @@ bool MyroomScene::init()
     }
     
     // 디바이스 사이즈
-    //    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     winSize = CCDirector::sharedDirector()->getWinSize();
     //배경
     CCSprite *bg1 = CCSprite::create("myroom_background.png");
@@ -78,23 +77,12 @@ bool MyroomScene::init()
      hdlayer->setContentSize(CCSizeMake(320, 50));
      hdlayer->addChild(hd1);*/
     
-    
-    
-    //머니 박스
-    /*
-     CCSprite* money_box = CCSprite::create("money_box.png");
-     
-     money_box->setScale(winSize.width/3200*2.5);
-     
-     money_box->setPosition(ccp(winSize.width/10*6.7,winSize.height/10*9.6));
-     
-     this->addChild(money_box);*/
-    
+
     
     //    헤더 코인/스타
-    CCMenuItemImage *money_star_button = CCMenuItemImage::create("money_star_button.png","money_star_button.png",this, menu_selector(MyroomScene::stars));
+    money_star_button = CCMenuItemImage::create("money_star_button.png","money_star_button.png",this, menu_selector(MyroomScene::stars));
     
-    CCMenuItemImage *money_coin_button = CCMenuItemImage::create("money_coin_button.png","money_coin_button.png",this, menu_selector(MyroomScene::coins));
+    money_coin_button = CCMenuItemImage::create("money_coin_button.png","money_coin_button.png",this, menu_selector(MyroomScene::coins));
     
     CCMenu* moneyMenu = CCMenu::create(money_star_button, money_coin_button, NULL);
     
