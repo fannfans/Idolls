@@ -17,7 +17,7 @@ USING_NS_CC_EXT;
 
 
 class MyroomScene : public cocos2d::CCLayerColor,
-        public CCScrollViewDelegate
+public CCScrollViewDelegate
 {
     
 public:
@@ -32,6 +32,10 @@ public:
     virtual void onEnter();
     virtual void onExit();
     
+//    CCMenuItemImage *money_star_button;
+//    CCMenuItemImage *money_coin_button;
+//    CCMenu* moneyMenu;
+    
     void scrollViewDidScroll(CCScrollView* view);
     void scrollViewDidZoom(CCScrollView* view);
     
@@ -39,6 +43,19 @@ public:
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    
+    virtual void popup();
+    virtual void schedule();
+    virtual void closet();
+    virtual void diary();
+    virtual void market();
+    virtual void stars();
+    virtual void coins();
+
+    virtual void popoff();
+    
+
+    
     
     CCScrollView *scrollView ;
     
