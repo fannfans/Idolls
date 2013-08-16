@@ -14,6 +14,9 @@
 using namespace cocos2d ;
 using namespace cocos2d::extension;
 
+CCLayer *closet_tab_layer; // 옷장 탭 부분 레이어
+CCLayer *closet_scroll_layer; // 옷장 탭 스크롤
+
 CCScene* ClosetScene::scene()
 {
     
@@ -47,7 +50,7 @@ bool ClosetScene::init()
     //    옷장 배경레이어
     
     closet_bglayer= CCLayerColor::create(ccc4(255,0,255,255));
-    closet_bglayer->setAnchorPoint(CCPointZero);
+    closet_bglayer->setAnchorPoint(ccp(0.5,0.5));
     closet_bglayer->setPosition(ccp(0,0));
     closet_bglayer->setContentSize(CCSizeMake(320,480));
     
@@ -85,8 +88,80 @@ bool ClosetScene::init()
     
     closetMenu->alignItemsHorizontally();
     closetMenu->setScale(winSize.width/3200*2.5);
-    closetMenu->setPosition(ccp(winSize.width/10*3,winSize.height/10*4.5));
+    closetMenu->setPosition(ccp(winSize.width/10*2.9,winSize.height/10*4.5));
     closet_bglayer->getParent()->addChild(closetMenu);
+    
+    // 옷장 탭 레이어
+    closet_tab_layer = CCLayer::create();
+    closet_tab_layer->setAnchorPoint(ccp(0,0));
+    closet_tab_layer->setPosition(ccp(winSize.width/10*2,winSize.height/10*1));
+    closet_tab_layer->setContentSize(CCSizeMake(320,300));
+    
+    //옷장 탭 박스
+    CCSprite *closet_tab_box = CCSprite::create("closet_tab_box.png");
+    closet_tab_box->setAnchorPoint(ccp(0.5,0.5));
+    closet_tab_box->setScale(winSize.width/3200*2.5);
+    closet_tab_box->setPosition(ccp(winSize.width/10*3.05,winSize.height/10*2));
+    
+    this->addChild(closet_tab_layer);
+    closet_tab_layer->addChild(closet_tab_box);
+    
+    // 옷장 탭
+    CCMenuItemImage *closet_hair_button = CCMenuItemImage::create("closet_hair_button_on.png","closet_hair_button_on.png",this, menu_selector(ClosetScene::hair));
+    
+    CCMenuItemImage *closet_top_button = CCMenuItemImage::create("closet_top_button_off.png","closet_top_button_on.png",this, menu_selector(ClosetScene::top));
+    
+    CCMenuItemImage *closet_bottom_button = CCMenuItemImage::create("closet_bottom_button_off.png","closet_bottom_button_on.png",this, menu_selector(ClosetScene::bottom));
+    
+    CCMenuItemImage *closet_shoes_button = CCMenuItemImage::create("closet_shoes_button_off.png","closet_shoes_button_on.png",this, menu_selector(ClosetScene::shoes));
+    
+    CCMenuItemImage *closet_etc_button = CCMenuItemImage::create("closet_etc_button_off.png","closet_etc_button_on.png",this, menu_selector(ClosetScene::etc));
+    
+    CCMenu* closetTab = CCMenu::create(closet_hair_button , closet_top_button, closet_bottom_button, closet_shoes_button, closet_etc_button, NULL);
+    
+    closetTab->alignItemsHorizontally();
+    closetTab->setAnchorPoint(ccp(0,0));
+    closetTab->setScale(winSize.width/3200*2.5);
+    closetTab->setPosition(ccp(winSize.width/10*3,winSize.height/10*4.05));
+    closet_tab_layer->addChild(closetTab);
+    
+    //탭 박스 아이템들
+    CCSprite *item1 = CCSprite::create("item1.png");
+    item1->setScale(winSize.width/3200*5);
+    item1->setPosition(ccp(winSize.width/10*1,winSize.height/10*1));
+    
+    CCSprite *item2 = CCSprite::create("item2.png");
+    item2->setScale(winSize.width/3200*5);
+    item2->setPosition(ccp(winSize.width/10*3,winSize.height/10*1));
+    
+    CCSprite *item3 = CCSprite::create("item3.png");
+    item3->setScale(winSize.width/3200*5);
+    item3->setPosition(ccp(winSize.width/10*5,winSize.height/10*1));
+    
+    //탭 박스 스크롤 레이어
+    closet_scroll_layer= CCLayerColor::create(ccc4(255,0,255,255));
+    closet_scroll_layer->setAnchorPoint(CCPointZero);
+    closet_scroll_layer->setPosition(ccp(0,0));
+    closet_scroll_layer->setContentSize(CCSizeMake(winSize.width/10*8,winSize.height/10*2));
+    
+    closet_scroll_layer->addChild(item1);
+    closet_scroll_layer->addChild(item2);
+    closet_scroll_layer->addChild(item3);
+    
+    closet_scroll= CCScrollView::create();
+    closet_scroll->retain();
+    closet_scroll->setAnchorPoint(ccp(0.5,0.5));
+    closet_scroll->setDirection(kCCScrollViewDirectionHorizontal);
+    closet_scroll->setViewSize(CCSizeMake(winSize.width,winSize.height/10*3));
+    closet_scroll->setContentSize(bglayer->getContentSize());
+    closet_scroll->setContentOffset(CCPointZero, true);
+    closet_scroll->setPosition(ccp(winSize.width/10*(-1),winSize.height/10*1));
+    closet_scroll->setContainer(closet_scroll_layer);
+    closet_scroll->setDelegate(this);
+    
+    closet_tab_layer->addChild(closet_scroll);
+    
+    
     //  하단메뉴
     /*
      popoffMenuLayer : 메뉴나오기 전 +버튼
@@ -107,6 +182,60 @@ bool ClosetScene::init()
     
     return true ;
     
+    
+}
+
+void ClosetScene::onEnter(){
+    
+    //    CCLayer::onEnter();
+    //    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 1, true);
+    
+    CCDirector* pDirector = CCDirector::sharedDirector();
+    pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+    CCLayer::onEnter();
+    
+}
+
+void ClosetScene::onExit(){
+    
+    //    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+    //    CCLayer::onExit();
+    
+    CCDirector* pDirector = CCDirector::sharedDirector();
+    pDirector->getTouchDispatcher()->removeDelegate(this);
+    
+    CCLayer::onExit();
+}
+
+
+void ClosetScene::scrollViewDidScroll(cocos2d::extension::CCScrollView *view){
+    
+}
+
+void ClosetScene::scrollViewDidZoom(cocos2d::extension::CCScrollView *view){
+    
+    
+}
+
+bool ClosetScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event){
+    CCPoint touchPoint = pTouch->getLocation();
+    CCLOG("Touches Began....(%f, %f)",touchPoint.x,touchPoint.y);
+    return true;
+}
+void ClosetScene::ccTouchMoved(CCTouch *pTouch, CCEvent* event){
+    CCPoint touchPoint = pTouch->getLocation();
+    CCLOG("Touches Moved....(%f,%f)",touchPoint.x, touchPoint.y);
+}
+//터치 후 손가락을 화면에서 뗐을 때 캐릭터이동
+void ClosetScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event){
+    CCPoint touchPoint = pTouch->getLocation();
+    CCMoveTo* chMove = CCMoveTo::create(2,ccp(touchPoint.x, touchPoint.y));
+    maincharacter->runAction(chMove);
+    CCLOG("Touches Endeds....(%f, %f)",touchPoint.x, touchPoint.y);
+}
+
+void ClosetScene::ccTouchCancelled(CCTouch *pTouch, CCEvent* event){
+    CCLOG("Touches Cancelled");
     
 }
 /*
@@ -208,5 +337,140 @@ void ClosetScene::reset(){
 }
 
 void ClosetScene::wear(){
+ 
+}
+
+// 헤어 탭 누르면
+void ClosetScene::hair(){
     
+    closet_tab_layer->setVisible(false);
+    
+    CCMenuItemImage *closet_hair_button = CCMenuItemImage::create("closet_hair_button_on.png","closet_hair_button_on.png",this, menu_selector(ClosetScene::hair));
+    
+    CCMenuItemImage *closet_top_button = CCMenuItemImage::create("closet_top_button_off.png","closet_top_button_on.png",this, menu_selector(ClosetScene::top));
+    
+    CCMenuItemImage *closet_bottom_button = CCMenuItemImage::create("closet_bottom_button_off.png","closet_bottom_button_on.png",this, menu_selector(ClosetScene::bottom));
+    
+    CCMenuItemImage *closet_shoes_button = CCMenuItemImage::create("closet_shoes_button_off.png","closet_shoes_button_on.png",this, menu_selector(ClosetScene::shoes));
+    
+    CCMenuItemImage *closet_etc_button = CCMenuItemImage::create("closet_etc_button_off.png","closet_etc_button_on.png",this, menu_selector(ClosetScene::etc));
+    
+    CCMenu* closetTab = CCMenu::create(closet_hair_button , closet_top_button, closet_bottom_button, closet_shoes_button, closet_etc_button, NULL);
+    
+    closetTab->alignItemsHorizontally();
+    closetTab->setAnchorPoint(ccp(0,0));
+    closetTab->setScale(winSize.width/3200*2.5);
+    closetTab->setPosition(ccp(winSize.width/10*3,winSize.height/10*4.05));
+    closet_tab_layer->addChild(closetTab);
+    
+    closet_tab_layer->setVisible(true);
+    
+    
+    
+}
+
+// 상의 탭 누르면
+void ClosetScene::top(){
+    closet_tab_layer->setVisible(false);
+    
+    // 옷장 탭
+    CCMenuItemImage *closet_hair_button = CCMenuItemImage::create("closet_hair_button_off.png","closet_hair_button_on.png",this, menu_selector(ClosetScene::hair));
+    
+    CCMenuItemImage *closet_top_button = CCMenuItemImage::create("closet_top_button_on.png","closet_top_button_on.png",this, menu_selector(ClosetScene::top));
+    
+    CCMenuItemImage *closet_bottom_button = CCMenuItemImage::create("closet_bottom_button_off.png","closet_bottom_button_on.png",this, menu_selector(ClosetScene::bottom));
+    
+    CCMenuItemImage *closet_shoes_button = CCMenuItemImage::create("closet_shoes_button_off.png","closet_shoes_button_on.png",this, menu_selector(ClosetScene::shoes));
+    
+    CCMenuItemImage *closet_etc_button = CCMenuItemImage::create("closet_etc_button_off.png","closet_etc_button_on.png",this, menu_selector(ClosetScene::etc));
+    
+    CCMenu* closetTab = CCMenu::create(closet_hair_button , closet_top_button, closet_bottom_button, closet_shoes_button, closet_etc_button, NULL);
+    
+    closetTab->alignItemsHorizontally();
+    closetTab->setAnchorPoint(ccp(0,0));
+    closetTab->setScale(winSize.width/3200*2.5);
+    closetTab->setPosition(ccp(winSize.width/10*3,winSize.height/10*4.05));
+    closet_tab_layer->addChild(closetTab);
+    
+    closet_tab_layer->setVisible(true);
+}
+
+//하의 탭 누르면
+void ClosetScene::bottom(){
+    closet_tab_layer->setVisible(false);
+    
+    // 옷장 탭
+    CCMenuItemImage *closet_hair_button = CCMenuItemImage::create("closet_hair_button_off.png","closet_hair_button_on.png",this, menu_selector(ClosetScene::hair));
+    
+    CCMenuItemImage *closet_top_button = CCMenuItemImage::create("closet_top_button_off.png","closet_top_button_on.png",this, menu_selector(ClosetScene::top));
+    
+    CCMenuItemImage *closet_bottom_button = CCMenuItemImage::create("closet_bottom_button_on.png","closet_bottom_button_on.png",this, menu_selector(ClosetScene::bottom));
+    
+    CCMenuItemImage *closet_shoes_button = CCMenuItemImage::create("closet_shoes_button_off.png","closet_shoes_button_on.png",this, menu_selector(ClosetScene::shoes));
+    
+    CCMenuItemImage *closet_etc_button = CCMenuItemImage::create("closet_etc_button_off.png","closet_etc_button_on.png",this, menu_selector(ClosetScene::etc));
+    
+    CCMenu* closetTab = CCMenu::create(closet_hair_button , closet_top_button, closet_bottom_button, closet_shoes_button, closet_etc_button, NULL);
+    
+    closetTab->alignItemsHorizontally();
+    closetTab->setAnchorPoint(ccp(0,0));
+    closetTab->setScale(winSize.width/3200*2.5);
+    closetTab->setPosition(ccp(winSize.width/10*3,winSize.height/10*4.05));
+    closet_tab_layer->addChild(closetTab);
+    
+    closet_tab_layer->setVisible(true);
+}
+
+// 신발 탭 누르면
+void ClosetScene::shoes(){
+    
+    closet_tab_layer->setVisible(false);
+    
+    // 옷장 탭
+    CCMenuItemImage *closet_hair_button = CCMenuItemImage::create("closet_hair_button_off.png","closet_hair_button_on.png",this, menu_selector(ClosetScene::hair));
+    
+    CCMenuItemImage *closet_top_button = CCMenuItemImage::create("closet_top_button_off.png","closet_top_button_on.png",this, menu_selector(ClosetScene::top));
+    
+    CCMenuItemImage *closet_bottom_button = CCMenuItemImage::create("closet_bottom_button_off.png","closet_bottom_button_on.png",this, menu_selector(ClosetScene::bottom));
+    
+    CCMenuItemImage *closet_shoes_button = CCMenuItemImage::create("closet_shoes_button_on.png","closet_shoes_button_on.png",this, menu_selector(ClosetScene::shoes));
+    
+    CCMenuItemImage *closet_etc_button = CCMenuItemImage::create("closet_etc_button_off.png","closet_etc_button_on.png",this, menu_selector(ClosetScene::etc));
+    
+    CCMenu* closetTab = CCMenu::create(closet_hair_button , closet_top_button, closet_bottom_button, closet_shoes_button, closet_etc_button, NULL);
+    
+    closetTab->alignItemsHorizontally();
+    closetTab->setAnchorPoint(ccp(0,0));
+    closetTab->setScale(winSize.width/3200*2.5);
+    closetTab->setPosition(ccp(winSize.width/10*3,winSize.height/10*4.05));
+    closet_tab_layer->addChild(closetTab);
+    
+    closet_tab_layer->setVisible(true);
+}
+
+// 기타 탭 누르면
+void ClosetScene::etc(){
+    
+    closet_tab_layer->setVisible(false);
+    
+    // 옷장 탭
+    CCMenuItemImage *closet_hair_button = CCMenuItemImage::create("closet_hair_button_off.png","closet_hair_button_on.png",this, menu_selector(ClosetScene::hair));
+    
+    CCMenuItemImage *closet_top_button = CCMenuItemImage::create("closet_top_button_off.png","closet_top_button_on.png",this, menu_selector(ClosetScene::top));
+    
+    CCMenuItemImage *closet_bottom_button = CCMenuItemImage::create("closet_bottom_button_off.png","closet_bottom_button_on.png",this, menu_selector(ClosetScene::bottom));
+    
+    CCMenuItemImage *closet_shoes_button = CCMenuItemImage::create("closet_shoes_button_off.png","closet_shoes_button_on.png",this, menu_selector(ClosetScene::shoes));
+    
+    CCMenuItemImage *closet_etc_button = CCMenuItemImage::create("closet_etc_button_on.png","closet_etc_button_on.png",this, menu_selector(ClosetScene::etc));
+    
+    CCMenu* closetTab = CCMenu::create(closet_hair_button , closet_top_button, closet_bottom_button, closet_shoes_button, closet_etc_button, NULL);
+    
+    closetTab->alignItemsHorizontally();
+    closetTab->setAnchorPoint(ccp(0,0));
+    closetTab->setScale(winSize.width/3200*2.5);
+    closetTab->setPosition(ccp(winSize.width/10*3,winSize.height/10*4.05));
+    closet_tab_layer->addChild(closetTab);
+    
+    closet_tab_layer->setVisible(true);
 }
