@@ -45,11 +45,12 @@ public:
     virtual void closet();
     virtual void diary();
     virtual void market();
+    
     virtual void stars();
     virtual void coins();
     virtual void popoff();
     
-    cocos2d::CCSprite* maincharacter;
+    
     
     
     CCScrollView *scrollView ;

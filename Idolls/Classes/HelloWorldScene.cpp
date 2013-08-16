@@ -29,7 +29,7 @@ bool HelloWorld::init()
     {
         return false;
     }
-    
+
     CCSize editBoxSize = CCSizeMake(274, 50);
     
     m_pEditId = CCEditBox::create(editBoxSize, CCScale9Sprite::create("white_edit.png"));
