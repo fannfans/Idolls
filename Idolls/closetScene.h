@@ -39,6 +39,7 @@ public:
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     
     CCScrollView *closet_scroll ;
+    CCScrollView *now_scroll ;
     
     virtual void chargeStar();
     virtual void chargeCoin();

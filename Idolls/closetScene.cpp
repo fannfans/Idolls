@@ -14,8 +14,13 @@
 using namespace cocos2d ;
 using namespace cocos2d::extension;
 
+CCSprite *now_item_hair, *now_item_top, *now_item_bottom ; //현재 착용 아이템들
+CCLayer *item_now_scroll; // 현재 착용 아이템 스크롤
 CCLayer *closet_tab_layer; // 옷장 탭 부분 레이어
 CCLayer *closet_scroll_layer; // 옷장 탭 스크롤
+CCSprite *itemPrev, *itemNow, *itemNext ; //현재 보여지는 아이템들
+CCArray *itemArray ; // 아이템 배열
+
 
 CCScene* ClosetScene::scene()
 {
@@ -49,7 +54,7 @@ bool ClosetScene::init()
     
     //    옷장 배경레이어
     
-    closet_bglayer= CCLayerColor::create(ccc4(255,0,255,255));
+    closet_bglayer = CCLayer::create();
     closet_bglayer->setAnchorPoint(ccp(0.5,0.5));
     closet_bglayer->setPosition(ccp(0,0));
     closet_bglayer->setContentSize(CCSizeMake(320,480));
@@ -91,6 +96,43 @@ bool ClosetScene::init()
     closetMenu->setPosition(ccp(winSize.width/10*2.9,winSize.height/10*4.5));
     closet_bglayer->getParent()->addChild(closetMenu);
     
+    // 현재 착용 아이템들
+    now_item_hair = CCSprite::create("item1.png");
+    now_item_hair->setScale(winSize.width/3200*5);
+    now_item_hair->setPosition(ccp(winSize.width/10*1,winSize.height/10*1));
+    
+    now_item_top = CCSprite::create("item2.png");
+    now_item_top->setScale(winSize.width/3200*5);
+    now_item_top->setPosition(ccp(winSize.width/10*4,winSize.height/10*1));
+    
+    now_item_bottom = CCSprite::create("item3.png");
+    now_item_bottom->setScale(winSize.width/3200*5);
+    now_item_bottom->setPosition(ccp(winSize.width/10*7,winSize.height/10*1));
+    
+    //현재 착용 아이템 레이어(스크롤)
+    item_now_scroll = CCLayerColor::create(ccc4(240,20,50,255));
+    item_now_scroll->setAnchorPoint(CCPointZero);
+    item_now_scroll->setPosition(ccp(10,0));
+    item_now_scroll->setContentSize(CCSizeMake(winSize.width/10*5,winSize.height/10*1));
+    
+    item_now_scroll->addChild(now_item_hair);
+    item_now_scroll->addChild(now_item_top);
+    item_now_scroll->addChild(now_item_bottom);
+    
+    now_scroll= CCScrollView::create();
+    now_scroll->retain();
+    now_scroll->setAnchorPoint(ccp(0.5,0.5));
+    now_scroll->setDirection(kCCScrollViewDirectionHorizontal);
+    now_scroll->setViewSize(CCSizeMake(winSize.width/10*8,winSize.height/10*3));
+    now_scroll->setContentSize(bglayer->getContentSize());
+    now_scroll->setContentOffset(ccp(0,0), false);
+    now_scroll->setPosition(ccp(winSize.width/10*3,winSize.height/10*6));
+    now_scroll->setContainer(item_now_scroll);
+    now_scroll->setDelegate(this);
+    
+    closet_bglayer->addChild(now_scroll);
+    
+    
     // 옷장 탭 레이어
     closet_tab_layer = CCLayer::create();
     closet_tab_layer->setAnchorPoint(ccp(0,0));
@@ -98,7 +140,7 @@ bool ClosetScene::init()
     closet_tab_layer->setContentSize(CCSizeMake(320,300));
     
     //옷장 탭 박스
-    CCSprite *closet_tab_box = CCSprite::create("closet_tab_box.png");
+    CCSprite *closet_tab_box = CCSprite::create();
     closet_tab_box->setAnchorPoint(ccp(0.5,0.5));
     closet_tab_box->setScale(winSize.width/3200*2.5);
     closet_tab_box->setPosition(ccp(winSize.width/10*3.05,winSize.height/10*2));
@@ -125,36 +167,38 @@ bool ClosetScene::init()
     closetTab->setPosition(ccp(winSize.width/10*3,winSize.height/10*4.05));
     closet_tab_layer->addChild(closetTab);
     
+    itemArray = CCArray::createWithCapacity(20);
+
     //탭 박스 아이템들
-    CCSprite *item1 = CCSprite::create("item1.png");
-    item1->setScale(winSize.width/3200*5);
-    item1->setPosition(ccp(winSize.width/10*1,winSize.height/10*1));
+    itemPrev = CCSprite::create("item1.png");
+    itemPrev->setScale(winSize.width/3200*5);
+    itemPrev->setPosition(ccp(winSize.width/10*1,winSize.height/10*1));
     
-    CCSprite *item2 = CCSprite::create("item2.png");
-    item2->setScale(winSize.width/3200*5);
-    item2->setPosition(ccp(winSize.width/10*3,winSize.height/10*1));
+    itemNow = CCSprite::create("item2.png");
+    itemNow->setScale(winSize.width/3200*7.5);
+    itemNow->setPosition(ccp(winSize.width/10*4,winSize.height/10*1));
     
-    CCSprite *item3 = CCSprite::create("item3.png");
-    item3->setScale(winSize.width/3200*5);
-    item3->setPosition(ccp(winSize.width/10*5,winSize.height/10*1));
+    itemNext = CCSprite::create("item3.png");
+    itemNext->setScale(winSize.width/3200*5);
+    itemNext->setPosition(ccp(winSize.width/10*7,winSize.height/10*1));
     
     //탭 박스 스크롤 레이어
-    closet_scroll_layer= CCLayerColor::create(ccc4(255,0,255,255));
+    closet_scroll_layer= CCLayer::create();
     closet_scroll_layer->setAnchorPoint(CCPointZero);
-    closet_scroll_layer->setPosition(ccp(0,0));
+    closet_scroll_layer->setPosition(ccp(10,0));
     closet_scroll_layer->setContentSize(CCSizeMake(winSize.width/10*8,winSize.height/10*2));
     
-    closet_scroll_layer->addChild(item1);
-    closet_scroll_layer->addChild(item2);
-    closet_scroll_layer->addChild(item3);
+    closet_scroll_layer->addChild(itemPrev);
+    closet_scroll_layer->addChild(itemNow);
+    closet_scroll_layer->addChild(itemNext);
     
     closet_scroll= CCScrollView::create();
     closet_scroll->retain();
     closet_scroll->setAnchorPoint(ccp(0.5,0.5));
     closet_scroll->setDirection(kCCScrollViewDirectionHorizontal);
-    closet_scroll->setViewSize(CCSizeMake(winSize.width,winSize.height/10*3));
+    closet_scroll->setViewSize(CCSizeMake(winSize.width/10*8,winSize.height/10*3));
     closet_scroll->setContentSize(bglayer->getContentSize());
-    closet_scroll->setContentOffset(CCPointZero, true);
+    closet_scroll->setContentOffset(ccp(0,0), false);
     closet_scroll->setPosition(ccp(winSize.width/10*(-1),winSize.height/10*1));
     closet_scroll->setContainer(closet_scroll_layer);
     closet_scroll->setDelegate(this);
@@ -228,9 +272,38 @@ void ClosetScene::ccTouchMoved(CCTouch *pTouch, CCEvent* event){
 }
 //터치 후 손가락을 화면에서 뗐을 때 캐릭터이동
 void ClosetScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event){
+
     CCPoint touchPoint = pTouch->getLocation();
-    CCMoveTo* chMove = CCMoveTo::create(2,ccp(touchPoint.x, touchPoint.y));
-    maincharacter->runAction(chMove);
+    
+    itemPrev->removeFromParentAndCleanup(true);
+    itemNow->removeFromParentAndCleanup(true);
+    itemNext->removeFromParentAndCleanup(true);
+    
+    itemPrev = CCSprite::create("item2.png");
+    itemPrev->setScale(winSize.width/3200*5);
+    itemPrev->setPosition(ccp(winSize.width/10*1,winSize.height/10*1));
+    
+    itemNow = CCSprite::create("item3.png");
+    itemNow->setScale(winSize.width/3200*7.5);
+    itemNow->setPosition(ccp(winSize.width/10*4,winSize.height/10*1));
+    
+    itemNext = CCSprite::create("item4.png");
+    itemNext->setScale(winSize.width/3200*5);
+    itemNext->setPosition(ccp(winSize.width/10*7,winSize.height/10*1));
+    
+    //탭 박스 스크롤 레이어
+    /*
+    closet_scroll_layer= CCLayer::create();
+    closet_scroll_layer->setAnchorPoint(CCPointZero);
+    closet_scroll_layer->setPosition(ccp(10,0));
+    closet_scroll_layer->setContentSize(CCSizeMake(winSize.width/10*8,winSize.height/10*2));
+    */
+    closet_scroll_layer->addChild(itemPrev,true);
+    closet_scroll_layer->addChild(itemNow, true);
+    closet_scroll_layer->addChild(itemNext, true);
+    
+    //CCMoveTo* chMove = CCMoveTo::create(2,ccp(touchPoint.x, touchPoint.y));
+
     CCLOG("Touches Endeds....(%f, %f)",touchPoint.x, touchPoint.y);
 }
 

@@ -15,7 +15,7 @@
 extern cocos2d::CCSize winSize ; //device 사이즈
 
 extern cocos2d::CCLayerColor *bglayer; //마이룸 배경 레이어
-extern cocos2d::CCLayerColor *closet_bglayer; //옷장 배경레이어
+extern cocos2d::CCLayer *closet_bglayer; //옷장 배경레이어
 
 //하단 메뉴
 extern cocos2d::CCLayerColor *popoffMenuLayer;
