@@ -46,8 +46,6 @@ public:
     virtual void chargeCoin();
     
     // 상점 삭제,초기화,구매 버튼
-    virtual void deleteItem();
-    virtual void initializeItem();
     virtual void buyItem();
     
     // 아이템 탭

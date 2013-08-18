@@ -17,6 +17,14 @@ using namespace cocos2d ;
 CCSprite *item1;
 CCSprite *item2;
 
+CCMenu* tapMenu; // 탭 메뉴
+// 탭 버튼들
+CCMenuItemImage *market_hair_button;
+CCMenuItemImage *market_top_button;
+CCMenuItemImage *market_bottom_button;
+CCMenuItemImage *market_shoes_button;
+CCMenuItemImage *market_etc_button;
+
 CCScene* MarketScene::scene()
 {
     
@@ -53,7 +61,7 @@ bool MarketScene::init()
     //  마켓 배경레이어
     
     market_bglayer = CCLayerColor::create(ccc4(255,0,255,255));
-    market_bglayer->setAnchorPoint(ccp(0.5,0.5));
+    market_bglayer->setAnchorPoint(ccp(0,0));
     market_bglayer->setPosition(ccp(0,0));
     market_bglayer->setContentSize(CCSizeMake(winSize.width,winSize.height));
     
@@ -74,58 +82,64 @@ bool MarketScene::init()
     moneyMenu->setPosition(ccp(winSize.width/10*2.6,winSize.height/10*5.5));
     market_bglayer->getParent()->addChild(moneyMenu);
     
-    // 삭제, 초기화, 구매 버튼
-    CCMenuItemImage *market_delete_button = CCMenuItemImage::create("market_delete_button_off.png", "market_delete_button_on.png", this, menu_selector(MarketScene::deleteItem));
+    // 현재 선택한 아이템
     
-    CCMenuItemImage *market_initialize_button = CCMenuItemImage::create("market_initialize_button_off.png", "market_initialize_button_on.png", this, menu_selector(MarketScene::initializeItem));
+    CCSprite *now_item = CCSprite::create("item1.png");
+    now_item->setScale(winSize.width/3200*7.5);
+    now_item->setPosition(ccp(winSize.width/10*7.2,winSize.height/10*7.6));
+    market_bglayer->getParent()->addChild(now_item);
+    
+    
+    // 구매 버튼
     
     CCMenuItemImage *market_buy_button = CCMenuItemImage::create("market_buy_button_off.png", "market_buy_button_on.png", this, menu_selector(MarketScene::buyItem));
     
-    CCMenu* itemMenu = CCMenu::create(market_delete_button, market_initialize_button, market_buy_button, NULL);
+    CCMenu* itemMenu = CCMenu::create(market_buy_button, NULL);
     
     itemMenu->alignItemsHorizontally();
     itemMenu->setScale(winSize.width/3200*2.5);
-    itemMenu->setPosition(ccp(winSize.width/10*2.8,winSize.height/10*2.2));
+    itemMenu->setPosition(ccp(winSize.width/10*3.6,winSize.height/10*0.6));
     market_bglayer->getParent()->addChild(itemMenu);
     
     
     //캐릭터
     maincharacter = CCSprite::create("character_ex.png");
-    maincharacter->setScale(0.25);
+    maincharacter->setScale(0.3);
     
     //캐릭터 레이어
     CCLayer *character_layer = CCLayer::create();
     character_layer->setAnchorPoint(CCPointZero);
-    character_layer->setPosition(ccp(winSize.width/10*1.8,winSize.height/10*7.2));
+    character_layer->setPosition(ccp(winSize.width/10*2.5,winSize.height/10*6.5));
     character_layer->addChild(maincharacter);
     
     market_bglayer->getParent()->addChild(character_layer);
     
     // 아이템 탭
-    CCMenuItemImage *market_hair_button = CCMenuItemImage::create("market_hair_button_off.png", "market_hair_button_on.png", this, menu_selector(MarketScene::hairtap));
+    market_hair_button = CCMenuItemImage::create("market_hair_button_on.png", "market_hair_button_on.png", this, menu_selector(MarketScene::hairtap));
     
-    CCMenuItemImage *market_top_button = CCMenuItemImage::create("market_top_button_off.png", "market_top_button_on.png", this, menu_selector(MarketScene::toptap));
+    market_top_button = CCMenuItemImage::create("market_top_button_off.png", "market_top_button_on.png", this, menu_selector(MarketScene::toptap));
     
-    CCMenuItemImage *market_bottom_button = CCMenuItemImage::create("market_bottom_button_off.png", "market_bottom_button_on.png", this, menu_selector(MarketScene::bottomtap));
+    market_bottom_button = CCMenuItemImage::create("market_bottom_button_off.png", "market_bottom_button_on.png", this, menu_selector(MarketScene::bottomtap));
     
-    CCMenuItemImage *market_shoes_button = CCMenuItemImage::create("market_shoes_button_off.png", "market_shoes_button_on.png", this, menu_selector(MarketScene::shoestap));
+    market_shoes_button = CCMenuItemImage::create("market_shoes_button_off.png", "market_shoes_button_on.png", this, menu_selector(MarketScene::shoestap));
     
-    CCMenuItemImage *market_etc_button = CCMenuItemImage::create("market_etc_button_off.png", "market_etc_button_on.png", this, menu_selector(MarketScene::etctap));
+    market_etc_button = CCMenuItemImage::create("market_etc_button_off.png", "market_etc_button_on.png", this, menu_selector(MarketScene::etctap));
     
-    CCMenu* tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
+    tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
     
     tapMenu->alignItemsHorizontally();
     tapMenu->setScale(winSize.width/3200*2.5);
-    tapMenu->setPosition(ccp(winSize.width/10*1.3,winSize.height/10*0.8));
+    tapMenu->setAnchorPoint(ccp(0,0));
+    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
     market_bglayer->addChild(tapMenu);
     
     // 위치 구분 스프라이트
-    item1= CCSprite::create("market_button.png");
-    item1->setScale(winSize.width/3200*2.5);
+    item1= CCSprite::create("item1.png");
+    item1->setScale(winSize.width/3200*5);
     item1->setPosition(ccp(winSize.width/10*3,winSize.height/10*1));
     
-    item2 = CCSprite::create("myroom_button.png");
-    item2->setScale(winSize.width/3200*2.5);
+    item2 = CCSprite::create("item2.png");
+    item2->setScale(winSize.width/3200*5);
     item2->setPosition(ccp(winSize.width/10*5,winSize.height/10*1));
     
     
@@ -133,7 +147,7 @@ bool MarketScene::init()
     CCLayerColor *market_item_layer = CCLayerColor::create(ccc4(255,0,255,0));
     market_item_layer->setAnchorPoint(ccp(0.5,0.5));
     market_item_layer->setPosition(ccp(0,0));
-    market_item_layer->setContentSize(CCSizeMake(winSize.width/10*5, winSize.height/10*3.5));
+    market_item_layer->setContentSize(CCSizeMake(winSize.width/10*5, winSize.height/10*2));
     
     //market_bglayer->addChild(market_item_layer);
     market_item_layer->addChild(item1);
@@ -143,7 +157,7 @@ bool MarketScene::init()
     market_item_scroll = CCScrollView::create();
     market_item_scroll->retain();
     market_item_scroll->setDirection(kCCScrollViewDirectionHorizontal);
-    market_item_scroll->setViewSize(CCSizeMake(winSize.width/10*8,winSize.height/10*3));
+    market_item_scroll->setViewSize(CCSizeMake(winSize.width/10*8,winSize.height/10*2));
     market_item_scroll->setContentSize(market_bglayer->getContentSize());
     market_item_scroll->setPosition(ccp(winSize.width/10*1,winSize.height/10*0.8));
     market_item_scroll->setContainer(market_item_layer);
@@ -249,15 +263,7 @@ void MarketScene::chargeCoin(){
     
 }
 
-void MarketScene::deleteItem(){
-    
-    
-}
-
-void MarketScene::initializeItem(){
-    
-}
-
+// 구매 버튼 눌렀을 때 호출되는 메소드
 void MarketScene::buyItem(){
     
     
@@ -347,22 +353,122 @@ void MarketScene::schedule(){
 }
 
 void MarketScene::hairtap(){
+ 
+
+    // 현재 탭 삭제
+    tapMenu->removeFromParentAndCleanup(true);
     
+    market_hair_button = CCMenuItemImage::create("market_hair_button_on.png", "market_hair_button_on.png", this, menu_selector(MarketScene::hairtap));
+    
+    market_top_button = CCMenuItemImage::create("market_top_button_off.png", "market_top_button_on.png", this, menu_selector(MarketScene::toptap));
+    
+    market_bottom_button = CCMenuItemImage::create("market_bottom_button_off.png", "market_bottom_button_on.png", this, menu_selector(MarketScene::bottomtap));
+    
+    market_shoes_button = CCMenuItemImage::create("market_shoes_button_off.png", "market_shoes_button_on.png", this, menu_selector(MarketScene::shoestap));
+    
+    market_etc_button = CCMenuItemImage::create("market_etc_button_off.png", "market_etc_button_on.png", this, menu_selector(MarketScene::etctap));
+    
+    tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
+    
+    tapMenu->alignItemsHorizontally();
+    tapMenu->setScale(winSize.width/3200*2.5);
+    tapMenu->setAnchorPoint(ccp(0,0));
+    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
+    market_bglayer->addChild(tapMenu, true);
 }
 
 void MarketScene::toptap(){
     
+    // 현재 탭 삭제
+    tapMenu->removeFromParentAndCleanup(true);
     
+    market_hair_button = CCMenuItemImage::create("market_hair_button_off.png", "market_hair_button_on.png", this, menu_selector(MarketScene::hairtap));
+    
+    market_top_button = CCMenuItemImage::create("market_top_button_on.png", "market_top_button_on.png", this, menu_selector(MarketScene::toptap));
+    
+    market_bottom_button = CCMenuItemImage::create("market_bottom_button_off.png", "market_bottom_button_on.png", this, menu_selector(MarketScene::bottomtap));
+    
+    market_shoes_button = CCMenuItemImage::create("market_shoes_button_off.png", "market_shoes_button_on.png", this, menu_selector(MarketScene::shoestap));
+    
+    market_etc_button = CCMenuItemImage::create("market_etc_button_off.png", "market_etc_button_on.png", this, menu_selector(MarketScene::etctap));
+    
+    tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
+    
+    tapMenu->alignItemsHorizontally();
+    tapMenu->setScale(winSize.width/3200*2.5);
+    tapMenu->setAnchorPoint(ccp(0,0));
+    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
+    market_bglayer->addChild(tapMenu, true);
 }
 
 void MarketScene::bottomtap(){
     
+    // 현재 탭 삭제
+    tapMenu->removeFromParentAndCleanup(true);
+    
+    market_hair_button = CCMenuItemImage::create("market_hair_button_off.png", "market_hair_button_on.png", this, menu_selector(MarketScene::hairtap));
+    
+    market_top_button = CCMenuItemImage::create("market_top_button_off.png", "market_top_button_on.png", this, menu_selector(MarketScene::toptap));
+    
+    market_bottom_button = CCMenuItemImage::create("market_bottom_button_on.png", "market_bottom_button_on.png", this, menu_selector(MarketScene::bottomtap));
+    
+    market_shoes_button = CCMenuItemImage::create("market_shoes_button_off.png", "market_shoes_button_on.png", this, menu_selector(MarketScene::shoestap));
+    
+    market_etc_button = CCMenuItemImage::create("market_etc_button_off.png", "market_etc_button_on.png", this, menu_selector(MarketScene::etctap));
+    
+    tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
+    
+    tapMenu->alignItemsHorizontally();
+    tapMenu->setScale(winSize.width/3200*2.5);
+    tapMenu->setAnchorPoint(ccp(0,0));
+    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
+    market_bglayer->addChild(tapMenu, true);
 }
 
 void MarketScene::shoestap(){
     
+    // 현재 탭 삭제
+    tapMenu->removeFromParentAndCleanup(true);
+    
+    market_hair_button = CCMenuItemImage::create("market_hair_button_off.png", "market_hair_button_on.png", this, menu_selector(MarketScene::hairtap));
+    
+    market_top_button = CCMenuItemImage::create("market_top_button_off.png", "market_top_button_on.png", this, menu_selector(MarketScene::toptap));
+    
+    market_bottom_button = CCMenuItemImage::create("market_bottom_button_off.png", "market_bottom_button_on.png", this, menu_selector(MarketScene::bottomtap));
+    
+    market_shoes_button = CCMenuItemImage::create("market_shoes_button_on.png", "market_shoes_button_on.png", this, menu_selector(MarketScene::shoestap));
+    
+    market_etc_button = CCMenuItemImage::create("market_etc_button_off.png", "market_etc_button_on.png", this, menu_selector(MarketScene::etctap));
+    
+    tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
+    
+    tapMenu->alignItemsHorizontally();
+    tapMenu->setScale(winSize.width/3200*2.5);
+    tapMenu->setAnchorPoint(ccp(0,0));
+    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
+    market_bglayer->addChild(tapMenu, true);
 }
 
 void MarketScene::etctap(){
     
+    // 현재 탭 삭제
+    tapMenu->removeFromParentAndCleanup(true);
+    
+    market_hair_button = CCMenuItemImage::create("market_hair_button_off.png", "market_hair_button_on.png", this, menu_selector(MarketScene::hairtap));
+    
+    market_top_button = CCMenuItemImage::create("market_top_button_off.png", "market_top_button_on.png", this, menu_selector(MarketScene::toptap));
+    
+    market_bottom_button = CCMenuItemImage::create("market_bottom_button_off.png", "market_bottom_button_on.png", this, menu_selector(MarketScene::bottomtap));
+    
+    market_shoes_button = CCMenuItemImage::create("market_shoes_button_off.png", "market_shoes_button_on.png", this, menu_selector(MarketScene::shoestap));
+    
+    market_etc_button = CCMenuItemImage::create("market_etc_button_on.png", "market_etc_button_on.png", this, menu_selector(MarketScene::etctap));
+    
+    tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
+    
+    tapMenu->alignItemsHorizontally();
+    tapMenu->setScale(winSize.width/3200*2.5);
+    tapMenu->setAnchorPoint(ccp(0,0));
+    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
+    market_bglayer->addChild(tapMenu, true);
 }
