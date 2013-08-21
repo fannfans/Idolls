@@ -49,8 +49,6 @@ public:
     virtual void coins();
     virtual void popoff();
     
-
-    
     
     CCScrollView *scrollView ;
     

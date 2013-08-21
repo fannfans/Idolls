@@ -17,7 +17,18 @@ using namespace cocos2d;
 
 
 CCLayerColor *bglayer;
+CCSprite *bg1; //마이룸 배경
+CCLayer *toplayer;
 
+bool scroll_flag = false ;
+bool start_flag = true ;
+//애니메이션 변수들
+CCAnimation *animation;
+CCAnimate *animate;
+CCAction * rep;
+
+CCPoint startPoint;
+CCPoint endPoint;
 
 CCScene* MyroomScene::scene()
 {
@@ -45,29 +56,31 @@ bool MyroomScene::init()
     
     // 디바이스 사이즈
     winSize = CCDirector::sharedDirector()->getWinSize();
+    
     //배경
-    CCSprite *bg1 = CCSprite::create("myroom_background.png");
+    bg1= CCSprite::create("myroom_background.png");
+    bg1->setAnchorPoint(ccp(0.5,0.5));
     bg1->setScale(winSize.width/3200*2.5);
     bg1->setPosition(ccp(winSize.width/2,winSize.height/2));
-    
-    //    마이룸배경레이어
+
     bglayer= CCLayerColor::create(ccc4(255,0,255,255));
     bglayer->setAnchorPoint(CCPointZero);
     bglayer->setPosition(ccp(0,0));
-    bglayer->setContentSize(CCSizeMake(320,480));
-    
+    bglayer->setContentSize(CCSizeMake(winSize.width/320*300,winSize.height/480*480));
     bglayer->addChild(bg1);
     
+    // 스크롤 뷰
     scrollView = CCScrollView::create();
     scrollView->retain();
     scrollView->setDirection(kCCScrollViewDirectionHorizontal);
-    scrollView->setViewSize(CCSizeMake(320,480));
+    scrollView->setViewSize(CCSizeMake(winSize.width/320*300,winSize.height/480*480));
     scrollView->setContentSize(bglayer->getContentSize());
-    scrollView->setContentOffset(CCPointZero, true);
+    scrollView->setContentOffset(ccp(0,0), true);
     scrollView->setPosition(ccp(0,0));
     scrollView->setContainer(bglayer);
     scrollView->setDelegate(this);
     this->addChild(scrollView);
+
     
     //    헤더레이어
     /*
@@ -77,7 +90,21 @@ bool MyroomScene::init()
      hdlayer->setContentSize(CCSizeMake(320, 50));
      hdlayer->addChild(hd1);*/
     
-
+    //    캐릭터
+    maincharacter = CCSprite::create("character1.png");
+    maincharacter->setScale(winSize.width/3200*2.5);
+    maincharacter->setPosition(ccp(50,120));
+    bglayer->addChild(maincharacter);
+    
+    //    캐릭터애니메이션
+    animation = CCAnimation::create();
+    animation->setDelayPerUnit(0.3);
+    animation->addSpriteFrameWithFileName("character1.png");
+    animation->addSpriteFrameWithFileName("character2.png");
+    animation->addSpriteFrameWithFileName("character3.png");
+    animate = CCAnimate::create(animation);
+    rep = CCRepeatForever::create(animate);
+    maincharacter->runAction(rep);
     
     //    헤더 코인/스타
     money_star_button = CCMenuItemImage::create("money_star_button.png","money_star_button.png",this, menu_selector(MyroomScene::stars));
@@ -88,26 +115,8 @@ bool MyroomScene::init()
     
     moneyMenu->alignItemsHorizontally();
     moneyMenu->setScale(winSize.width/3200*1.8);
-    moneyMenu->setPosition(ccp(winSize.width/10*2.6,winSize.height/10*5.5));
-    bglayer->getParent()->getParent()->addChild(moneyMenu);
-    
-    
-    //    캐릭터
-    maincharacter = CCSprite::create("character4.png");
-    maincharacter->setScale(0.5);
-    maincharacter->setPosition(ccp(50,120));
-    scrollView->addChild(maincharacter);
-    
-    //    캐릭터애니메이션
-    CCAnimation *animation = CCAnimation::create();
-    animation->setDelayPerUnit(0.3);
-    animation->addSpriteFrameWithFileName("character5.png");
-    animation->addSpriteFrameWithFileName("character4.png");
-    animation->addSpriteFrameWithFileName("character5.png");
-    CCAnimate *animate = CCAnimate::create(animation);
-    CCAction *rep = CCRepeatForever::create(animate);
-    maincharacter->runAction(rep);
-    
+    moneyMenu->setPosition(ccp(winSize.width/10*2.5,winSize.height/10*5.5));
+    bglayer->addChild(moneyMenu);
     
     //  하단메뉴
     /*
@@ -124,7 +133,7 @@ bool MyroomScene::init()
     popoffMenu->alignItemsHorizontally();
     popoffMenu->setPosition(ccp(winSize.width/10*9.15,winSize.height/10*0.7));
     popoffMenuLayer->addChild(popoffMenu);
-    bglayer->getParent()->getParent()->addChild(popoffMenuLayer);
+    bglayer->addChild(popoffMenuLayer);
     
     return true;
 }
@@ -155,30 +164,71 @@ void MyroomScene::onExit(){
 
 void MyroomScene::scrollViewDidScroll(cocos2d::extension::CCScrollView *view){
     
+    if(start_flag){
+        
+    }
+    else{
+        CCLOG("Scrolled!!!");
+    }
+
 }
-
-
 
 void MyroomScene::scrollViewDidZoom(cocos2d::extension::CCScrollView *view){
     
-    
+
 }
 
 bool MyroomScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event){
-    CCPoint touchPoint = pTouch->getLocation();
-    CCLOG("Touches Began....(%f, %f)",touchPoint.x,touchPoint.y);
+    startPoint = pTouch->getLocation();
+    CCLOG("Touches Began....(%f, %f)",startPoint.x,startPoint.y);
     return true;
 }
+
+// 스크롤
 void MyroomScene::ccTouchMoved(CCTouch *pTouch, CCEvent* event){
     CCPoint touchPoint = pTouch->getLocation();
     CCLOG("Touches Moved....(%f,%f)",touchPoint.x, touchPoint.y);
+    //시작시 스크롤 멈추기
+    start_flag=false;
+    scroll_flag=true;
 }
+
 //터치 후 손가락을 화면에서 뗐을 때 캐릭터이동
 void MyroomScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event){
-    CCPoint touchPoint = pTouch->getLocation();
-    CCMoveTo* chMove = CCMoveTo::create(2,ccp(touchPoint.x, touchPoint.y));
-    maincharacter->runAction(chMove);
-    CCLOG("Touches Endeds....(%f, %f)",touchPoint.x, touchPoint.y);
+    endPoint = pTouch->getLocation();
+    CCMoveTo* chMove = CCMoveTo::create(2,ccp(endPoint.x, endPoint.y));
+    CCLOG("Touches Endeds....(%f, %f)",endPoint.x, endPoint.y);
+    
+    /*scroll_flag==true이면 스크롤 됐다는 뜻이므로 배경 움직이고
+    아니면 터치한 경우이므로 애니메이션 작동*/
+    if (scroll_flag) {
+        CCPoint movePoint ;
+        //
+        if(startPoint.x<endPoint.x){
+            movePoint.x = 50;
+            movePoint.y = 0;
+        }
+        else{
+            movePoint.x = -50;
+            movePoint.y = 0;
+        }
+        // 현재 배경 삭제
+        bglayer->setVisible(false);
+        scrollView->removeFromParentAndCleanup(true);
+
+        // 배경 위치 바꾸기
+        bglayer->setPosition(CCPoint(movePoint.x,0));
+        bglayer->setVisible(true);
+        this->addChild(scrollView);
+
+        CCLOG("OK!");
+        scroll_flag=false;
+    }
+    else{
+
+        maincharacter->runAction(chMove);
+
+    }
 }
 
 void MyroomScene::ccTouchCancelled(CCTouch *pTouch, CCEvent* event){
@@ -223,7 +273,7 @@ void MyroomScene::popup(){
     pMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*-0.1));
     popupMenuLayer->addChild(pMenu);
     popupMenuLayer->runAction(move_ease_out);
-    bglayer->getParent()->getParent()->getParent()->addChild(popupMenuLayer);
+    bglayer->addChild(popupMenuLayer);
     
 }
 /*
