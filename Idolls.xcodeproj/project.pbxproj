@@ -206,6 +206,8 @@
 		A81C03E016F6CB8C00DBC745 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81C03DF16F6CB8C00DBC745 /* HelloWorldScene.cpp */; };
 		A85788CE179E4A5C00797044 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A85788CD179E4A5C00797044 /* Default.png */; };
 		A8835803179E4FB00042556E /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = A8835802179E4FB00042556E /* background1.png */; };
+		A895618F17C496F600C64C49 /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895618D17C496F600C64C49 /* global.cpp */; };
+		A895619217C4971E00C64C49 /* DiaryScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A895619017C4971E00C64C49 /* DiaryScene.cpp */; };
 		A8A9047C179FF57B0023EE71 /* MyroomScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8A9047A179FF57B0023EE71 /* MyroomScene.cpp */; };
 		A8A9047F179FF58A0023EE71 /* JoinScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8A9047D179FF58A0023EE71 /* JoinScene.cpp */; };
 /* End PBXBuildFile section */
@@ -644,6 +646,10 @@
 		A81C03DF16F6CB8C00DBC745 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
 		A85788CD179E4A5C00797044 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A8835802179E4FB00042556E /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background1.png; sourceTree = "<group>"; };
+		A895618D17C496F600C64C49 /* global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = global.cpp; sourceTree = "<group>"; };
+		A895618E17C496F600C64C49 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
+		A895619017C4971E00C64C49 /* DiaryScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiaryScene.cpp; sourceTree = "<group>"; };
+		A895619117C4971E00C64C49 /* DiaryScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryScene.h; sourceTree = "<group>"; };
 		A8A9047A179FF57B0023EE71 /* MyroomScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyroomScene.cpp; sourceTree = "<group>"; };
 		A8A9047B179FF57B0023EE71 /* MyroomScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyroomScene.h; sourceTree = "<group>"; };
 		A8A9047D179FF58A0023EE71 /* JoinScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JoinScene.cpp; sourceTree = "<group>"; };
@@ -1535,10 +1541,14 @@
 			children = (
 				A81C03DB16F6CB8C00DBC745 /* AppDelegate.h */,
 				A81C03DC16F6CB8C00DBC745 /* AppDelegate.cpp */,
+				A895618D17C496F600C64C49 /* global.cpp */,
+				A895618E17C496F600C64C49 /* global.h */,
 				A81C03DE16F6CB8C00DBC745 /* HelloWorldScene.h */,
 				A81C03DF16F6CB8C00DBC745 /* HelloWorldScene.cpp */,
 				A8A9047B179FF57B0023EE71 /* MyroomScene.h */,
 				A8A9047A179FF57B0023EE71 /* MyroomScene.cpp */,
+				A895619017C4971E00C64C49 /* DiaryScene.cpp */,
+				A895619117C4971E00C64C49 /* DiaryScene.h */,
 				A8A9047E179FF58A0023EE71 /* JoinScene.h */,
 				A8A9047D179FF58A0023EE71 /* JoinScene.cpp */,
 			);
@@ -1797,6 +1807,8 @@
 				A81C03E016F6CB8C00DBC745 /* HelloWorldScene.cpp in Sources */,
 				A8A9047C179FF57B0023EE71 /* MyroomScene.cpp in Sources */,
 				A8A9047F179FF58A0023EE71 /* JoinScene.cpp in Sources */,
+				A895618F17C496F600C64C49 /* global.cpp in Sources */,
+				A895619217C4971E00C64C49 /* DiaryScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

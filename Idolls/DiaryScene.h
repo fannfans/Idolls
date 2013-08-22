@@ -1,13 +1,13 @@
 //
-//  MyroomScene.h
+//  DiaryScene.h
 //  Idolls
 //
-//  Created by 효은 김 on 13. 7. 24..
+//  Created by 효은 김 on 13. 8. 21..
 //
 //
 
-#ifndef __Idolls__MyroomScene__
-#define __Idolls__MyroomScene__
+#ifndef __Idolls__DiaryScene__
+#define __Idolls__DiaryScene__
 
 #include "cocos2d.h"
 #include "cocos-ext.h"
@@ -16,16 +16,15 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 
 
-class MyroomScene : public cocos2d::CCLayerColor,
+class DiaryScene : public cocos2d::CCLayerColor,
 public CCScrollViewDelegate
 {
-    
 public:
     virtual bool init();
     
     static cocos2d::CCScene* scene();
     
-    CREATE_FUNC(MyroomScene);
+    CREATE_FUNC(DiaryScene);
     
     void doClose(CCObject* pSender);
     
@@ -40,20 +39,7 @@ public:
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     
-    virtual void popup();
-    virtual void schedule();
-    virtual void closet();
-    virtual void diary();
-    virtual void market();
-    
-    virtual void stars();
-    virtual void coins();
-    virtual void popoff();
-    
     CCScrollView *scrollView ;
     
-    
-    
 };
-
-#endif /* defined(__Idolls__MyroomScene__) */
+#endif /* defined(__Idolls__DiaryScene__) */
