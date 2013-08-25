@@ -41,6 +41,10 @@ public:
     CCScrollView *market_item_scroll ;
     CCLayerColor *market_item_layer;
     
+    //스크롤 관련
+    virtual void prevItem();
+    virtual void nextItem();
+    
     // 스타/코인 버튼
     virtual void chargeStar();
     virtual void chargeCoin();
@@ -63,6 +67,9 @@ public:
     
     virtual void popup();
     virtual void popoff();
+    
+    //아이템 선택
+    virtual void selectItem();
 };
 
 #endif /* defined(__Idolls__marketScene__) */

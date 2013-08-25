@@ -86,23 +86,23 @@ bool MyroomScene::init()
     CCMenu* moneyMenu = CCMenu::create(money_star_button, money_coin_button, NULL);
     
     moneyMenu->alignItemsHorizontally();
-    moneyMenu->setScale(winSize.width/3200*1.8);
-    moneyMenu->setPosition(ccp(winSize.width/10*2.6,winSize.height/10*5.5));
+    moneyMenu->setScale(winSize.width/3200*2.5);
+    moneyMenu->setPosition(ccp(winSize.width/10*3.3,winSize.height/10*5.9));
     bglayer->getParent()->getParent()->addChild(moneyMenu);
     
     
     //    캐릭터
-    maincharacter = CCSprite::create("character4.png");
-    maincharacter->setScale(0.5);
+    maincharacter = CCSprite::create("character1.png");
+    maincharacter->setScale(0.15);
     maincharacter->setPosition(ccp(50,120));
     scrollView->addChild(maincharacter);
     
     //    캐릭터애니메이션
     CCAnimation *animation = CCAnimation::create();
     animation->setDelayPerUnit(0.3);
-    animation->addSpriteFrameWithFileName("character5.png");
+    animation->addSpriteFrameWithFileName("character2.png");
+    animation->addSpriteFrameWithFileName("character3.png");
     animation->addSpriteFrameWithFileName("character4.png");
-    animation->addSpriteFrameWithFileName("character5.png");
     CCAnimate *animate = CCAnimate::create(animation);
     CCAction *rep = CCRepeatForever::create(animate);
     maincharacter->runAction(rep);
@@ -201,10 +201,10 @@ void MyroomScene::popup(){
     CCActionInterval* move_ease_out = CCEaseElasticOut::create((CCActionInterval*)(move->copy()->autorelease()));
     
     popupMenuLayer->setContentSize(CCSizeMake(0,0));
-    CCMenuItemImage *pMenuSchedule = CCMenuItemImage::create("schedule_button.png", "schedule_button.png", this, menu_selector(MyroomScene::schedule));
-    CCMenuItemImage *pMenuCloset = CCMenuItemImage::create("closet_button.png","closet_button.png",this, menu_selector(MyroomScene::closet));
-    CCMenuItemImage *pMenuDiary = CCMenuItemImage::create("diary_button.png", "diary_button.png", this, menu_selector(MyroomScene::diary));
-    CCMenuItemImage *pMenuMarket = CCMenuItemImage::create("market_button.png","market_button.png", this, menu_selector(MyroomScene::market));
+    CCMenuItemImage *pMenuSchedule = CCMenuItemImage::create("schedule_button_off.png", "schedule_button_on.png", this, menu_selector(MyroomScene::schedule));
+    CCMenuItemImage *pMenuCloset = CCMenuItemImage::create("closet_button_off.png","closet_button_on.png",this, menu_selector(MyroomScene::closet));
+    CCMenuItemImage *pMenuDiary = CCMenuItemImage::create("diary_button_off.png", "diary_button_on.png", this, menu_selector(MyroomScene::diary));
+    CCMenuItemImage *pMenuMarket = CCMenuItemImage::create("market_button_off.png","market_button_on.png", this, menu_selector(MyroomScene::market));
     CCMenuItemImage *pMenuPopoff = CCMenuItemImage::create("menu_button_on.png","menu_button_on.png",this, menu_selector(MyroomScene::popoff));
     
     
@@ -216,9 +216,7 @@ void MyroomScene::popup(){
     
     pMenuPopoff->setPosition(ccp(winSize.width/10*9,winSize.height/10*0.4));
     CCMenu* pMenu = CCMenu::create(pMenuSchedule,pMenuCloset,pMenuDiary,pMenuMarket,pMenuPopoff,NULL);
-    
-    pMenu->alignItemsHorizontally();
-    
+    pMenu->alignItemsHorizontallyWithPadding(0.1);
     pMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*-0.1));
     popupMenuLayer->addChild(pMenu);
     popupMenuLayer->runAction(move_ease_out);

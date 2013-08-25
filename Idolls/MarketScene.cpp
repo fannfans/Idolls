@@ -10,12 +10,19 @@
 #include "MyroomScene.h"
 
 #include "global.h"
+#include <stdio.h>
+#include <stdlib.h>
+
 
 using namespace cocos2d ;
 
+//아이템들
+CCMenuItemImage *item1;
+CCMenuItemImage *item2;
+CCMenuItemImage *item3;
 
-CCSprite *item1;
-CCSprite *item2;
+CCSprite *now_item_img; //선택한 아이템 이미지
+CCLabelTTF *now_item_exp; //선택한 아이템 설명
 
 CCMenu* tapMenu; // 탭 메뉴
 // 탭 버튼들
@@ -24,6 +31,16 @@ CCMenuItemImage *market_top_button;
 CCMenuItemImage *market_bottom_button;
 CCMenuItemImage *market_shoes_button;
 CCMenuItemImage *market_etc_button;
+
+CCLayerColor *market_item_layer;
+
+CCPoint startPoint; // 터치 시 위치
+CCPoint nowPoint; //스크롤시 위치
+
+bool scroll_flag = true;
+
+char items[12][20] ; // 아이템 배열
+int prev, now, next; // 현재 보이는 아이템들 번호
 
 CCScene* MarketScene::scene()
 {
@@ -78,33 +95,35 @@ bool MarketScene::init()
     CCMenu* moneyMenu = CCMenu::create(money_star_button, money_coin_button, NULL);
     
     moneyMenu->alignItemsHorizontally();
-    moneyMenu->setScale(winSize.width/3200*1.8);
-    moneyMenu->setPosition(ccp(winSize.width/10*2.6,winSize.height/10*5.5));
-    market_bglayer->getParent()->addChild(moneyMenu);
+    moneyMenu->setScale(winSize.width/3200*2.5);
+    moneyMenu->setPosition(ccp(winSize.width/10*3.3,winSize.height/10*5.9));
+    market_bglayer->getParent()->addChild(moneyMenu);    
     
     // 현재 선택한 아이템
+    now_item_img = CCSprite::create();
+    now_item_img->setScale(winSize.width/3200*7.5);
+    now_item_img->setPosition(ccp(winSize.width/10*7.2,winSize.height/10*7.6));
+    market_bglayer->getParent()->addChild(now_item_img);
     
-    CCSprite *now_item = CCSprite::create("item1.png");
-    now_item->setScale(winSize.width/3200*7.5);
-    now_item->setPosition(ccp(winSize.width/10*7.2,winSize.height/10*7.6));
-    market_bglayer->getParent()->addChild(now_item);
-    
+    //아이템 설명
+    now_item_exp = CCLabelTTF::create("", "Thonburi", 25);
+    now_item_exp->setPosition(ccp(winSize.width/10*7.2,winSize.height/10*6));
+    market_bglayer->getParent()->addChild(now_item_exp);
     
     // 구매 버튼
-    
     CCMenuItemImage *market_buy_button = CCMenuItemImage::create("market_buy_button_off.png", "market_buy_button_on.png", this, menu_selector(MarketScene::buyItem));
     
     CCMenu* itemMenu = CCMenu::create(market_buy_button, NULL);
     
     itemMenu->alignItemsHorizontally();
     itemMenu->setScale(winSize.width/3200*2.5);
-    itemMenu->setPosition(ccp(winSize.width/10*3.6,winSize.height/10*0.6));
+    itemMenu->setPosition(ccp(winSize.width/10*3.4,winSize.height/10*0.4));
     market_bglayer->getParent()->addChild(itemMenu);
     
     
     //캐릭터
-    maincharacter = CCSprite::create("character_ex.png");
-    maincharacter->setScale(0.3);
+    maincharacter = CCSprite::create("character1.png");
+    maincharacter->setScale(0.12);
     
     //캐릭터 레이어
     CCLayer *character_layer = CCLayer::create();
@@ -127,45 +146,55 @@ bool MarketScene::init()
     
     tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
     
-    tapMenu->alignItemsHorizontally();
+    tapMenu->alignItemsHorizontallyWithPadding(0);
     tapMenu->setScale(winSize.width/3200*2.5);
     tapMenu->setAnchorPoint(ccp(0,0));
-    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
+    tapMenu->setPosition(ccp(winSize.width/10*5.03,winSize.height/10*3.2));
     market_bglayer->addChild(tapMenu);
     
-    // 위치 구분 스프라이트
-    item1= CCSprite::create("item1.png");
-    item1->setScale(winSize.width/3200*5);
-    item1->setPosition(ccp(winSize.width/10*3,winSize.height/10*1));
-    
-    item2 = CCSprite::create("item2.png");
-    item2->setScale(winSize.width/3200*5);
-    item2->setPosition(ccp(winSize.width/10*5,winSize.height/10*1));
+
+    char s1[] = "item";
+    char s2[] = ".png";
+
+    for (int i=0; i<10; i++) {
+        
+        char s[3] ;
+        char temp[20] = "" ;
+        sprintf(s, "%d", i+1);
+        
+        strcat(temp, s1);
+        strcat(temp, s);
+        strcat(temp, s2);
+       
+        strcpy(items[i], temp);
+
+    }
+
     
     
     // 스크롤뷰 올릴 레이어
-    CCLayerColor *market_item_layer = CCLayerColor::create(ccc4(255,0,255,0));
-    market_item_layer->setAnchorPoint(ccp(0.5,0.5));
+    market_item_layer = CCLayerColor::create(ccc4(255,0,255,0));
+    market_item_layer->setAnchorPoint(ccp(0,0));
     market_item_layer->setPosition(ccp(0,0));
     market_item_layer->setContentSize(CCSizeMake(winSize.width/10*5, winSize.height/10*2));
     
-    //market_bglayer->addChild(market_item_layer);
-    market_item_layer->addChild(item1);
-    market_item_layer->addChild(item2);
+    market_bglayer->addChild(market_item_layer);
+
+    // 아이템들
+    prev = 0;
+    now = 1;
+    next = 2;
+    item1 = CCMenuItemImage::create(items[prev], items[prev], this, menu_selector(MarketScene::selectItem));
+    item2 = CCMenuItemImage::create(items[now], items[now], this, menu_selector(MarketScene::selectItem));
+    item3 = CCMenuItemImage::create(items[next], items[next], this, menu_selector(MarketScene::selectItem));
     
-    //스크롤뷰
-    market_item_scroll = CCScrollView::create();
-    market_item_scroll->retain();
-    market_item_scroll->setDirection(kCCScrollViewDirectionHorizontal);
-    market_item_scroll->setViewSize(CCSizeMake(winSize.width/10*8,winSize.height/10*2));
-    market_item_scroll->setContentSize(market_bglayer->getContentSize());
-    market_item_scroll->setPosition(ccp(winSize.width/10*1,winSize.height/10*0.8));
-    market_item_scroll->setContainer(market_item_layer);
-    market_item_scroll->setDelegate(this);
-    market_item_scroll->setContentOffset(ccp(100,0), false);
+    CCMenu* itemView = CCMenu::create(item1, item2, item3, NULL);
     
-    market_bglayer->addChild(market_item_scroll);
-    
+    itemView->alignItemsHorizontallyWithPadding(80.0f);
+    itemView->setScale(winSize.width/3200*5);
+    itemView->setPosition(ccp(winSize.width/10*2.3,winSize.height/10*(-0.7)));
+    market_item_layer->addChild(itemView);
+        
     //  하단메뉴
     /*
      popoffMenuLayer : 메뉴나오기 전 +버튼
@@ -220,26 +249,53 @@ void MarketScene::scrollViewDidZoom(cocos2d::extension::CCScrollView *view){
 }
 
 bool MarketScene::ccTouchBegan(CCTouch *pTouch, CCEvent* event){
-    /*CCPoint touchPoint = pTouch->getLocation();
-    CCLOG("Touches Began....(%f, %f)",touchPoint.x,touchPoint.y);
-     */
+
+    startPoint = pTouch->getLocation();
+    CCLOG("Touches Moved....(%f,%f)",startPoint.x, startPoint.y);
+    
+    // 터치한 부분이 아이템 탭 밖에있으면 스크롤 하지 않음
+   /* if (startPoint.x>300 || startPoint.x<0) {
+        
+        scroll_flag=false;
+    }
+    else if(startPoint.y>300 || startPoint.y<0){
+        scroll_flag=false;
+    }*/
+    
     return true;
 }
+
 void MarketScene::ccTouchMoved(CCTouch *pTouch, CCEvent* event){
-    /*CCPoint touchPoint = pTouch->getLocation();
-    CCLOG("Touches Moved....(%f,%f)",touchPoint.x, touchPoint.y);
-     */
+
+    if (scroll_flag) {
+        nowPoint = pTouch->getLocation();
+        CCLOG("Touches Moved....(%f,%f)",nowPoint.x, nowPoint.y);
+        
+        // prevItem 방향으로 스크롤
+        if (startPoint.x > nowPoint.x){
+            
+            nextItem();
+        }
+        // nextItem 방향으로 스크롤
+        else{
+            
+            prevItem();
+        }
+        scroll_flag=false;
+    }
+    else{
+
+    }
+
+    
+    
     
 }
+
 //스크롤하고 손 뗐을 때 아이템 위치 변경
 void MarketScene::ccTouchEnded(CCTouch *pTouch, CCEvent* event){
-    CCPoint touchPoint = pTouch->getLocation();
-    CCLOG("Touch! Touch! (%f,%f)",touchPoint.x, touchPoint.y);
-    item1->removeFromParentAndCleanup(true);
-    item2->removeFromParentAndCleanup(true);
-    //item1->setPosition(ccp(touchPoint.x,touchPoint.y));
-    //market_item_layer->addChild(item1);
-    
+
+    scroll_flag=true;
     
 }
 
@@ -248,6 +304,86 @@ void MarketScene::ccTouchCancelled(CCTouch *pTouch, CCEvent* event){
     
 }
 
+void MarketScene::prevItem(){
+    /*
+    CCActionInterval* moveLeft = CCMoveBy::create(0.3, ccp(100,0));
+    CCAction* next_fadeout = CCHide::create();
+    
+    CCActionInterval* prevItem = CCMoveBy::create(0.3, ccp(-20,0));
+    CCActionInterval* nowItem = CCMoveBy::create(0.3, ccp(100,0));
+    CCFiniteTimeAction* nextItem = CCSequence::create(moveLeft,next_fadeout,NULL);
+    
+    item1->runAction(prevItem);
+    item2->runAction(nowItem);
+    item3->runAction(nextItem);
+    */
+    // 아이템 다시 배치
+    
+    item1->removeFromParentAndCleanup(true);
+    item2->removeFromParentAndCleanup(true);
+    item3->removeFromParentAndCleanup(true);
+   
+    if (prev!=0) {
+        
+        prev--;
+        now--;
+        next--;
+    }
+
+    // 아이템들
+    item1 = CCMenuItemImage::create(items[prev], items[prev], this, menu_selector(MarketScene::selectItem));
+    item2 = CCMenuItemImage::create(items[now], items[now], this, menu_selector(MarketScene::selectItem));
+    item3 = CCMenuItemImage::create(items[next], items[next], this, menu_selector(MarketScene::selectItem));
+    
+    CCMenu* itemView = CCMenu::create(item1, item2, item3, NULL);
+    
+    itemView->alignItemsHorizontallyWithPadding(80.0f);
+    itemView->setScale(winSize.width/3200*5);
+    itemView->setPosition(ccp(winSize.width/10*2.3,winSize.height/10*(-0.7)));
+    market_item_layer->addChild(itemView);
+
+}
+
+void MarketScene::nextItem(){
+    /*
+    CCActionInterval* moveLeft = CCMoveBy::create(0.3, ccp(-20,0));
+    CCAction* prev_fadeout = CCHide::create();
+    
+    CCFiniteTimeAction* prevItem = CCSequence::create(moveLeft,prev_fadeout,NULL);
+    CCActionInterval* nowItem = CCMoveBy::create(0.3, ccp(-100,0));
+    CCActionInterval* nextItem = CCMoveBy::create(0.3, ccp(-100,0));
+    
+    item1->runAction(prevItem);
+    item2->runAction(nowItem);
+    item3->runAction(nextItem);
+     */
+    
+    // 아이템 다시 배치
+    
+    item1->removeFromParentAndCleanup(true);
+    item2->removeFromParentAndCleanup(true);
+    item3->removeFromParentAndCleanup(true);
+    
+    if(next!=sizeof(items)){
+        prev++;
+        now++;
+        next++;
+    }
+    // 아이템들
+    item1 = CCMenuItemImage::create(items[prev], items[prev], this, menu_selector(MarketScene::selectItem));
+    item2 = CCMenuItemImage::create(items[now], items[now], this, menu_selector(MarketScene::selectItem));
+    
+    item3 = CCMenuItemImage::create(items[next], items[next], this, menu_selector(MarketScene::selectItem));
+    
+    
+    CCMenu* itemView = CCMenu::create(item1, item2, item3, NULL);
+    
+    itemView->alignItemsHorizontallyWithPadding(80.0f);
+    itemView->setScale(winSize.width/3200*5);
+    itemView->setPosition(ccp(winSize.width/10*2.3,winSize.height/10*(-0.7)));
+    market_item_layer->addChild(itemView);
+
+}
 
 void MarketScene::chargeStar(){
     
@@ -260,6 +396,25 @@ void MarketScene::chargeCoin(){
     
     
     
+    
+}
+
+// 아이템 클릭하면 설명이 보임
+void MarketScene::selectItem(){
+    
+    // 현재 선택한 아이템
+    now_item_img->removeFromParentAndCleanup(true);
+    now_item_exp->removeFromParentAndCleanup(true);
+    
+    now_item_img = CCSprite::create(items[now]);
+    now_item_img->setScale(winSize.width/3200*7.5);
+    now_item_img->setPosition(ccp(winSize.width/10*7.2,winSize.height/10*7.6));
+    market_bglayer->getParent()->addChild(now_item_img, true);
+    
+    //아이템 설명
+    now_item_exp = CCLabelTTF::create(items[now], "Thonburi", 25);
+    now_item_exp->setPosition(ccp(winSize.width/10*7.2,winSize.height/10*6));
+    market_bglayer->getParent()->addChild(now_item_exp, true);
     
 }
 
@@ -286,12 +441,12 @@ void MarketScene::popup(){
     
     popupMenuLayer->setContentSize(CCSizeMake(0,0));
     
-    CCMenuItemImage *pMenuMyroom = CCMenuItemImage::create("myroom_button.png","myroom_button.png", this, menu_selector(MarketScene::myroom));
-    CCMenuItemImage *pMenuSchedule = CCMenuItemImage::create("schedule_button.png", "schedule_button.png", this, menu_selector(MarketScene::schedule));
+    CCMenuItemImage *pMenuMyroom = CCMenuItemImage::create("myroom_button_off.png","myroom_button_on.png", this, menu_selector(MarketScene::myroom));
+    CCMenuItemImage *pMenuSchedule = CCMenuItemImage::create("schedule_button_off.png", "schedule_button_on.png", this, menu_selector(MarketScene::schedule));
     
-    CCMenuItemImage *pMenuCloset = CCMenuItemImage::create("closet_button.png","closet_button.png",this, menu_selector(MarketScene::closet));
+    CCMenuItemImage *pMenuCloset = CCMenuItemImage::create("closet_button_off.png","closet_button_on.png",this, menu_selector(MarketScene::closet));
     
-    CCMenuItemImage *pMenuDiary = CCMenuItemImage::create("diary_button.png", "diary_button.png", this, menu_selector(MarketScene::diary));
+    CCMenuItemImage *pMenuDiary = CCMenuItemImage::create("diary_button_off.png", "diary_button_on.png", this, menu_selector(MarketScene::diary));
     
     CCMenuItemImage *pMenuPopoff = CCMenuItemImage::create("menu_button_on.png","menu_button_on.png",this, menu_selector(MarketScene::popoff));
     
@@ -305,8 +460,7 @@ void MarketScene::popup(){
     pMenuPopoff->setPosition(ccp(winSize.width/10*9,winSize.height/10*0.4));
     CCMenu* pMenu = CCMenu::create(pMenuMyroom,pMenuSchedule,pMenuCloset,pMenuDiary,pMenuPopoff,NULL);
     
-    pMenu->alignItemsHorizontally();
-    
+    pMenu->alignItemsHorizontallyWithPadding(0.1);
     pMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*-0.1));
     popupMenuLayer->addChild(pMenu);
     popupMenuLayer->runAction(move_ease_out);
@@ -370,10 +524,10 @@ void MarketScene::hairtap(){
     
     tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
     
-    tapMenu->alignItemsHorizontally();
+    tapMenu->alignItemsHorizontallyWithPadding(0);
     tapMenu->setScale(winSize.width/3200*2.5);
     tapMenu->setAnchorPoint(ccp(0,0));
-    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
+    tapMenu->setPosition(ccp(winSize.width/10*5.03,winSize.height/10*3.2));
     market_bglayer->addChild(tapMenu, true);
 }
 
@@ -394,10 +548,10 @@ void MarketScene::toptap(){
     
     tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
     
-    tapMenu->alignItemsHorizontally();
+    tapMenu->alignItemsHorizontallyWithPadding(0);
     tapMenu->setScale(winSize.width/3200*2.5);
     tapMenu->setAnchorPoint(ccp(0,0));
-    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
+    tapMenu->setPosition(ccp(winSize.width/10*5.03,winSize.height/10*3.2));
     market_bglayer->addChild(tapMenu, true);
 }
 
@@ -418,10 +572,10 @@ void MarketScene::bottomtap(){
     
     tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
     
-    tapMenu->alignItemsHorizontally();
+    tapMenu->alignItemsHorizontallyWithPadding(0);
     tapMenu->setScale(winSize.width/3200*2.5);
     tapMenu->setAnchorPoint(ccp(0,0));
-    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
+    tapMenu->setPosition(ccp(winSize.width/10*5.03,winSize.height/10*3.2));
     market_bglayer->addChild(tapMenu, true);
 }
 
@@ -442,10 +596,10 @@ void MarketScene::shoestap(){
     
     tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
     
-    tapMenu->alignItemsHorizontally();
+    tapMenu->alignItemsHorizontallyWithPadding(0);
     tapMenu->setScale(winSize.width/3200*2.5);
     tapMenu->setAnchorPoint(ccp(0,0));
-    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
+    tapMenu->setPosition(ccp(winSize.width/10*5.03,winSize.height/10*3.2));
     market_bglayer->addChild(tapMenu, true);
 }
 
@@ -466,9 +620,9 @@ void MarketScene::etctap(){
     
     tapMenu = CCMenu::create(market_hair_button, market_top_button, market_bottom_button,market_shoes_button, market_etc_button, NULL);
     
-    tapMenu->alignItemsHorizontally();
+    tapMenu->alignItemsHorizontallyWithPadding(0);
     tapMenu->setScale(winSize.width/3200*2.5);
     tapMenu->setAnchorPoint(ccp(0,0));
-    tapMenu->setPosition(ccp(winSize.width/10*5,winSize.height/10*3));
+    tapMenu->setPosition(ccp(winSize.width/10*5.03,winSize.height/10*3.2));
     market_bglayer->addChild(tapMenu, true);
 }
