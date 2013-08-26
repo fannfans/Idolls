@@ -1,5 +1,5 @@
 obj/local/armeabi/objs-debug/cocos2dx_static/kazmath/src/mat3.o: \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/kazmath/src/mat3.c \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/kazmath/src/mat3.c \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/stdlib.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h \
@@ -22,12 +22,12 @@ obj/local/armeabi/objs-debug/cocos2dx_static/kazmath/src/mat3.o: \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/sysmacros.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/memory.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/assert.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/utility.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/include/ccConfig.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/utility.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/include/ccConfig.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/math.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/limits.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/limits.h \
@@ -36,10 +36,10 @@ obj/local/armeabi/objs-debug/cocos2dx_static/kazmath/src/mat3.o: \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/machine/limits.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/syslimits.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/asm/page.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/vec3.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/mat3.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/utility.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/quaternion.h
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/vec3.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/mat3.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/utility.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/quaternion.h
 
 /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/stdlib.h:
 
@@ -85,17 +85,17 @@ obj/local/armeabi/objs-debug/cocos2dx_static/kazmath/src/mat3.o: \
 
 /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/assert.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/utility.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/utility.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/include/ccConfig.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/include/ccConfig.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h:
 
 /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/math.h:
 
@@ -113,10 +113,10 @@ obj/local/armeabi/objs-debug/cocos2dx_static/kazmath/src/mat3.o: \
 
 /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/asm/page.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/vec3.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/vec3.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/mat3.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/mat3.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/utility.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/utility.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/quaternion.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/kazmath/include/kazmath/quaternion.h:

@@ -1,11 +1,11 @@
 obj/local/armeabi/objs-debug/cocos2dx_static/cocoa/CCZone.o: \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCZone.cpp \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCZone.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/include/ccConfig.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCZone.cpp \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCZone.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/include/ccConfig.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/stdio.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h \
@@ -22,19 +22,19 @@ obj/local/armeabi/objs-debug/cocos2dx_static/cocoa/CCZone.o: \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/linux/types.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/machine/kernel.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/sysmacros.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCZone.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCZone.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/include/ccConfig.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/include/ccConfig.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h:
 
 /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/stdio.h:
 
@@ -68,4 +68,4 @@ obj/local/armeabi/objs-debug/cocos2dx_static/cocoa/CCZone.o: \
 
 /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/sysmacros.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h:

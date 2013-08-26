@@ -1,7 +1,7 @@
 obj/local/armeabi/objs-debug/cocos2dx_static/support/zip_support/ioapi.o: \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/support/zip_support/ioapi.cpp \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/support/zip_support/ioapi.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/support/zip_support/ioapi.cpp \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/support/zip_support/ioapi.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/stdio.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h \
@@ -27,9 +27,9 @@ obj/local/armeabi/objs-debug/cocos2dx_static/support/zip_support/ioapi.o: \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/zlib.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/zconf.h
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/support/zip_support/ioapi.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/support/zip_support/ioapi.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
 
 /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/stdio.h:
 

@@ -1,5 +1,5 @@
 obj/local/armeabi/objs-debug/cocos2dx_static/support/base64.o: \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/support/base64.cpp \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/support/base64.cpp \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/stdio.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h \
@@ -22,7 +22,7 @@ obj/local/armeabi/objs-debug/cocos2dx_static/support/base64.o: \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/alloca.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/strings.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/memory.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/support/base64.h
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/support/base64.h
 
 /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/stdio.h:
 
@@ -68,4 +68,4 @@ obj/local/armeabi/objs-debug/cocos2dx_static/support/base64.o: \
 
 /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/memory.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/support/base64.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/support/base64.h:

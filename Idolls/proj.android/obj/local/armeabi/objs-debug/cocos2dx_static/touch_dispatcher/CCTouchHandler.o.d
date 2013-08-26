@@ -1,20 +1,20 @@
 obj/local/armeabi/objs-debug/cocos2dx_static/touch_dispatcher/CCTouchHandler.o: \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchHandler.cpp \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchHandler.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchDelegateProtocol.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/include/ccConfig.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchDispatcher.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCArray.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/support/data_support/ccCArray.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/include/ccMacros.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCCommon.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/android/CCStdC.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchHandler.cpp \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchHandler.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchDelegateProtocol.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/include/ccConfig.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchDispatcher.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCArray.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/support/data_support/ccCArray.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/include/ccMacros.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCCommon.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/android/CCStdC.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/math.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h \
@@ -50,40 +50,40 @@ obj/local/armeabi/objs-debug/cocos2dx_static/touch_dispatcher/CCTouchHandler.o: 
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/linux/time.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/asm/siginfo.h \
  /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/siginfo.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/include/ccConfig.h \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCSet.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/include/ccConfig.h \
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCSet.h \
  /Users/hyoeungim/idolls/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/set \
- /Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h
+ /Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchHandler.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchHandler.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchDelegateProtocol.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchDelegateProtocol.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/include/ccConfig.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/include/ccConfig.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformConfig.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/android/CCPlatformDefine.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchDispatcher.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/touch_dispatcher/CCTouchDispatcher.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCArray.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCArray.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/support/data_support/ccCArray.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/support/data_support/ccCArray.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/include/ccMacros.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/include/ccMacros.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCCommon.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCCommon.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/CCPlatformMacros.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/platform/android/CCStdC.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/platform/android/CCStdC.h:
 
 /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/math.h:
 
@@ -155,10 +155,10 @@ obj/local/armeabi/objs-debug/cocos2dx_static/touch_dispatcher/CCTouchHandler.o: 
 
 /Users/hyoeungim/idolls/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/siginfo.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/include/ccConfig.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/include/ccConfig.h:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCSet.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCSet.h:
 
 /Users/hyoeungim/idolls/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/set:
 
-/Users/hyoeungim/desktop/I.dolls/Idolls/IDolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h:
+/Users/hyoeungim/desktop/I.dolls/Idolls_ver1/Idolls/proj.android/../libs/cocos2dx/cocoa/CCObject.h:
