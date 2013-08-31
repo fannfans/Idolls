@@ -33,6 +33,16 @@
 
 NS_CC_EXT_BEGIN
 
+bool CCTableViewDataSource::hasFixedCellSize()
+{
+    return true;
+}
+
+CCSize CCTableViewDataSource::cellSizeForIndex(CCTableView *table, unsigned int idx)
+{
+    return cellSizeForTable(table);
+}
+
 CCTableView* CCTableView::create(CCTableViewDataSource* dataSource, CCSize size)
 {
     return CCTableView::create(dataSource, size, NULL);

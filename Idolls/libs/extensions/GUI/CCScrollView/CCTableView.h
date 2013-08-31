@@ -83,6 +83,11 @@ public:
      * @return number of cells
      */
     virtual unsigned int numberOfCellsInTableView(CCTableView *table) = 0;
+    
+    
+    virtual bool hasFixedCellSize() ;
+    
+    virtual CCSize cellSizeForIndex(CCTableView* table, unsigned int idx);
 
 };
 
@@ -173,7 +178,7 @@ public:
      */
     CCTableViewCell *cellAtIndex(unsigned int idx);
 
-
+    virtual void _updateContentSize();
     virtual void scrollViewDidScroll(CCScrollView* view);
     virtual void scrollViewDidZoom(CCScrollView* view) {}
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
@@ -213,7 +218,7 @@ protected:
     unsigned int _indexFromOffset(CCPoint offset);
     CCPoint __offsetFromIndex(unsigned int index);
     CCPoint _offsetFromIndex(unsigned int index);
-    void _updateContentSize();
+
 
     CCTableViewCell* _cellWithIndex(unsigned int cellIndex);
     void _moveCellOutOfSight(CCTableViewCell *cell);
