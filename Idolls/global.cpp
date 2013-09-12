@@ -28,3 +28,4 @@ CCMenu *moneyMenu;
 /* ScheduleScene 부분 */
 CCLayerColor *Schedulebglayer;
 CCLayerColor *SchedulePopupLayer;
+CCLayerColor *ScheduleSubmitLayer;

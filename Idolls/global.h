@@ -30,6 +30,6 @@ extern cocos2d::CCMenu * moneyMenu;
 /* ScheduleScene 부분 */
 extern cocos2d::CCLayerColor *Schedulebglayer;
 extern cocos2d::CCLayerColor *SchedulePopupLayer;
-
+extern cocos2d::CCLayerColor *ScheduleSubmitLayer;
 
 #endif /* defined(__Idolls__global__) */

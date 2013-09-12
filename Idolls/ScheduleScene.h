@@ -25,6 +25,11 @@ public:
     virtual void schedule_bg_set();
     virtual void schedule_do_set();
     virtual void schedule_do_layer();
+    virtual void schedule_done_layer();
+    virtual void schedule_fail_layer();
+    virtual void schedule_list();
+    virtual void schedule_submit();
+    virtual void schedule_submit_ok();
 };
 
 
